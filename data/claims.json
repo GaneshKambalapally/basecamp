@@ -1,0 +1,12 @@
+[
+  {"claim_id": "CLM-1001", "policy_id": "POL-2001", "status": "Approved", "amount": 45000, "updated": "2026-10-02", "reason": null},
+  {"claim_id": "CLM-1002", "policy_id": "POL-2001", "status": "Under Review", "amount": 120000, "updated": "2026-10-15", "reason": null},
+  {"claim_id": "CLM-1003", "policy_id": "POL-2002", "status": "Approved", "amount": 62000, "updated": "2026-09-21", "reason": null},
+  {"claim_id": "CLM-1004", "policy_id": "POL-2002", "status": "Rejected", "amount": 150000, "updated": "2026-10-08", "reason": "Damage caused while driving under the influence is excluded"},
+  {"claim_id": "CLM-1005", "policy_id": "POL-2003", "status": "Pending Documents", "amount": 2500000, "updated": "2026-11-03", "reason": null},
+  {"claim_id": "CLM-1006", "policy_id": "POL-2004", "status": "Rejected", "amount": 80000, "updated": "2026-08-30", "reason": "Policy lapsed before the date of treatment"},
+  {"claim_id": "CLM-1007", "policy_id": "POL-2001", "status": "Rejected", "amount": 35000, "updated": "2026-09-12", "reason": "Pre-existing condition within the waiting period"},
+  {"claim_id": "CLM-1008", "policy_id": "POL-2002", "status": "Pending Documents", "amount": 28000, "updated": "2026-11-10", "reason": null},
+  {"claim_id": "CLM-1009", "policy_id": "POL-2003", "status": "Under Review", "amount": 1000000, "updated": "2026-11-12", "reason": null},
+  {"claim_id": "CLM-1010", "policy_id": "POL-2004", "status": "Approved", "amount": 22000, "updated": "2026-07-18", "reason": null}
+]
