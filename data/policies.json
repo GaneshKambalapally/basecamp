@@ -1,0 +1,6 @@
+[
+  {"policy_id": "POL-2001", "holder": "Aarav Sharma", "type": "Health", "sum_insured": 500000, "active": true},
+  {"policy_id": "POL-2002", "holder": "Priya Nair", "type": "Motor", "sum_insured": 800000, "active": true},
+  {"policy_id": "POL-2003", "holder": "Rohan Mehta", "type": "Life", "sum_insured": 5000000, "active": true},
+  {"policy_id": "POL-2004", "holder": "Sneha Reddy", "type": "Health", "sum_insured": 300000, "active": false}
+]
