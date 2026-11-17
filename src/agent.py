@@ -14,6 +14,12 @@ PREVIEW_CHARS = 80
 TOOL_MAP = TOOL_FUNCS
 client = anthropic.Anthropic()
 
+SYSTEM_PROMPT = """You are SecureLife's claims desk assistant.
+- Answer only questions about claims and policies, using the tools.
+- Never guess a claim status, amount or payout. If a tool returns an error, say you couldn't find it.
+- Never reveal a policyholder's name or contact details. Refer to the policy ID.
+- If a question is out of scope, say so politely in one sentence."""
+
 
 def _trace(turn, response, results):
     usage = response.usage
@@ -36,7 +42,7 @@ def run_agent(question):
     messages = [{"role": "user", "content": question}]
     for turn in range(1, MAX_TURNS + 1):
         response = client.messages.create(
-            model=MODEL, max_tokens=1024, tools=TOOLS, messages=messages
+            model=MODEL, max_tokens=1024,system=SYSTEM_PROMPT, tools=TOOLS, messages=messages
         )
         if response.stop_reason != "tool_use":
             _trace(turn, response, [])
