@@ -22,6 +22,31 @@ def get_policy_details(policy_id):
     return policy or {"error": f"Policy {policy_id} not found"}
 
 
+COPAY = {"Health": 0.10, "Motor": 0.05, "Life": 0.0}
+APPROVAL_LIMIT = 100_000
+
+
+def estimate_payout(claim_id):
+    claim = get_claim_status(claim_id)
+    if "error" in claim:
+        return claim
+    if claim["status"] != "Approved":
+        return {"eligible": False, "reason": f"Claim status is {claim['status']}"}
+    policy = get_policy_details(claim["policy_id"])
+    if "error" in policy:
+        return policy
+    if not policy["active"]:
+        return {"eligible": False, "reason": "Policy inactive"}
+    base = min(claim["amount"], policy["sum_insured"])
+    payout = round(base * (1 - COPAY[policy["type"]]))
+    return {
+        "eligible": True,
+        "base": base,
+        "payout": payout,
+        "requires_approval": payout > APPROVAL_LIMIT,
+    }
+
+
 TOOLS = [
     {
         "name": "get_claim_status",
@@ -47,9 +72,23 @@ TOOLS = [
             "required": ["policy_id"],
         },
     },
+    {
+        "name": "estimate_payout",
+        "description": (
+            "Estimate the payout for an insurance claim by ID (format CLM-1001). "
+            "Only approved claims on active policies are eligible. Returns eligible, "
+            "base, payout and requires_approval, or a reason when not eligible."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {"claim_id": {"type": "string", "description": "e.g. CLM-1001"}},
+            "required": ["claim_id"],
+        },
+    },
 ]
 
 TOOL_FUNCS = {
     "get_claim_status": get_claim_status,
     "get_policy_details": get_policy_details,
+    "estimate_payout": estimate_payout,
 }
