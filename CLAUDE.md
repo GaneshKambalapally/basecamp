@@ -1,4 +1,3 @@
-# Claims Agent - SecureLife Insurance
 
 ## Stack
 - Python 3.11+ (venv in `.venv`, currently 3.14), anthropic SDK, mcp, python-dotenv, pytest. No other dependencies.
